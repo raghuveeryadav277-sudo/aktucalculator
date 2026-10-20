@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AKTU Academic Calculator | SGPA &amp; CGPA Calculator</title>
+<meta name="description" content="Calculate your SGPA, CGPA, and percentage with AKTUCalc. Select your course, academic regulation, semester, subjects, credits, and grades to manage your academic performance.">
+<link rel="canonical" href="https://example.com/">
+<meta property="og:title" content="AKTUCalc - AKTU SGPA & CGPA Calculator">
+<meta property="og:description" content="Semester-wise SGPA, CGPA and percentage calculator for AKTU students. Not affiliated with AKTU.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232563eb'/%3E%3Ctext x='16' y='22' font-size='16' text-anchor='middle' fill='white' font-family='Arial'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="bar">
+  <a class="logo" href="#top">AKTU<span>Calc</span></a>
+  <nav><a href="#calculator">Calculator</a><a href="#courses">Courses</a><a href="#about">About</a>
+  <button id="themeBtn" class="btn ghost" data-action="theme" aria-label="Toggle dark mode">🌓</button></nav>
+</header>
+<main id="top">
+<section class="hero">
+  <span class="badge">For AKTU Students</span>
+  <h1>AKTU Academic Calculator</h1>
+  <p>Calculate your SGPA, CGPA, and percentage with AKTUCalc. Select your course, academic regulation, semester, subjects, credits, and grades to manage your academic performance.</p>
+  <a class="btn" href="#calculator">Start Calculating</a>
+</section>
+
+<section id="courses" class="wrap">
+  <h2>1. Choose your course</h2>
+  <div id="courseCards" class="cards"></div>
+  <p class="note">Only courses with configured rules can be calculated. Rules marked <b>unverified</b> must be checked against official AKTU documents.</p>
+</section>
+
+<section id="calculator" class="wrap">
+  <h2>2. Calculator</h2>
+  <div id="notice" class="msg warn" hidden></div>
+  <div id="workspace" hidden>
+    <div class="panel grid2">
+      <label>Regulation<select id="reg"></select></label>
+      <label id="branchWrap">Branch<select id="branch"></select></label>
+    </div>
+    <div id="semTabs" class="tabs" role="tablist" aria-label="Semester"></div>
+    <div class="panel">
+      <h3 id="semTitle"></h3>
+      <div id="rows"></div>
+      <div class="actions">
+        <button class="btn ghost" data-action="add">+ Add Subject</button>
+        <button class="btn" data-action="calc">Calculate SGPA</button>
+        <button class="btn ok" data-action="save">Save Semester</button>
+        <button class="btn ghost" data-action="reset">Reset Current Semester</button>
+        <button class="btn danger" data-action="delsem">Delete Saved Semester</button>
+      </div>
+      <div id="msg" class="msg" role="status" hidden></div>
+      <div id="sgpaOut" class="result" hidden></div>
+    </div>
+
+    <h2>3. Dashboard &amp; CGPA</h2>
+    <div id="dash" class="cards stats"></div>
+    <div class="panel"><h3>SGPA by semester</h3><div id="chart" class="chart" aria-label="SGPA chart"></div>
+      <p id="empty" class="note">No semesters saved yet. Calculate and save a semester to see results here.</p></div>
+    <div class="panel"><h3>Saved semesters (tick to include in CGPA)</h3><div id="saved"></div></div>
+    <div class="panel"><h3>Percentage</h3>
+      <p id="pctInfo"></p>
+      <label>Conversion factor K (Percentage = CGPA × K)<input id="factor" type="number" step="0.01" min="0" placeholder="e.g. enter factor from official rules"></label>
+      <p id="pctOut" class="result"></p></div>
+    <button class="btn danger" data-action="clearall">Clear all saved data</button>
+  </div>
+</section>
+
+<section class="wrap" id="how"><h2>How it works</h2>
+<ol><li>Pick course, regulation and (for B.Tech) branch.</li><li>Open a semester and enter subject names, credits and grades.</li>
+<li>SGPA = Σ(credits × grade point) ÷ Σ credits.</li><li>Save the semester. CGPA = total grade points ÷ total credits of the included saved semesters.</li>
+<li>Percentage is shown only when you provide a conversion factor from your official rules.</li></ol></section>
+
+<section class="wrap" id="about"><h2>About</h2>
+<p>AKTUCalc helps students estimate SGPA, CGPA and percentage. SGPA is the credit-weighted grade average of one semester; CGPA is the cumulative equivalent. Grade points and conversion factors live in a central configuration and are labelled <b>unverified</b> until checked against official AKTU documents. Results are estimates, not official. This site is not affiliated with AKTU. Report errors by opening an issue in the project repository.</p>
+<noscript><p>This calculator needs JavaScript. SGPA = Σ(Cᵢ×Gᵢ)/ΣCᵢ.</p></noscript></section>
+</main>
+<footer><nav><a href="#calculator">Calculator</a> · <a href="#courses">Courses</a> · <a href="#about">About</a> · <a href="#how">How it works</a></nav>
+<p>Disclaimer: results are unofficial estimates. Data is stored only in your browser.</p></footer>
+<div id="toast" class="toast" role="status" hidden></div>
+<script src="script.js"></script>
+</body>
+</html>
